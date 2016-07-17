@@ -11,6 +11,7 @@ trait CanAssertThatTrait
 {
     /**
      * @codeCoverageIgnore
+     *
      * @since [*next-version*]
      */
     abstract public function assertThat($value, \PHPUnit_Framework_Constraint $constraint, $message = '');

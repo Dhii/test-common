@@ -68,8 +68,11 @@ class AssertionFailure extends \PHPUnit_Framework_Constraint
 
     /**
      * @codeCoverageIgnore
+     *
      * @since [*next-version*]
+     *
      * @param string|null $message The failure message. Null to ignore message constraint.
+     *
      * @return \Dhii\Test\Constraint\AssertionFailure This instance.
      */
     protected function _setFailureMessage($message)
