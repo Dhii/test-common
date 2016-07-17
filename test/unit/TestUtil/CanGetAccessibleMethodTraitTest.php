@@ -15,6 +15,7 @@ class CanGetAccessibleMethodTraitTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Tests that `getAccessibleMethod()` really returns an accessible method instance.
+     *
      * @since [*next-version*]
      */
     public function testGetAccessibleMethod()
@@ -28,6 +29,7 @@ class CanGetAccessibleMethodTraitTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @since [*next-version*]
+     *
      * @return string The message token that signifies correct operation.
      */
     protected function _inaccessibleMethod()
@@ -37,6 +39,7 @@ class CanGetAccessibleMethodTraitTest extends \PHPUnit_Framework_TestCase
 
     /**
      * This is here to centralize access to a message token.
+     *
      * @return string A message token.
      */
     public function getMessageToken()
