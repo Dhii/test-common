@@ -3,13 +3,13 @@
 namespace Dhii\Test\Test;
 
 /**
- * Tests CanAssertAssertionSuccessTrait.
+ * Tests AssertionSuccessTrait.
  *
  * Ultimately, this tests a test mechanism, which determines if assertions succeed.
  *
  * @since [*next-version*]
  */
-class CanAssertAssertionSuccessTraitTest extends \PHPUnit_Framework_TestCase
+class AssertionSuccessTraitTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Fails if the assertion of failure by subject fails, i.e. if the tested test succeeds.
@@ -18,7 +18,7 @@ class CanAssertAssertionSuccessTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testAssertAssertionSuccessSuccess()
     {
-        $subjectClass = \Dhii\Test\CanAssertAssertionSuccessTrait::class;
+        $subjectClass = \Dhii\Test\Assertion\AssertionSuccessTrait::class;
         $trait = $this->getMockForTrait($subjectClass);
         $trait->method('assertThat')
             ->will($this->returnCallback(function ($value, $constraint, $message = '') {
@@ -37,7 +37,7 @@ class CanAssertAssertionSuccessTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testAssertAssertionSuccessFailure()
     {
-        $subjectClass = \Dhii\Test\CanAssertAssertionSuccessTrait::class;
+        $subjectClass = \Dhii\Test\Assertion\AssertionSuccessTrait::class;
         $trait = $this->getMockForTrait($subjectClass);
         $trait->method('assertThat')
             ->will($this->returnCallback(function ($value, $constraint, $message = '') {

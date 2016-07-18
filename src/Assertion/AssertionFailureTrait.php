@@ -1,15 +1,17 @@
 <?php
 
-namespace Dhii\Test;
+namespace Dhii\Test\Assertion;
+
+use Dhii\Test\Constraint;
 
 /**
  * Functionality for asserting that a PHPUnit assertion fails.
  *
  * @since [*next-version*]
  */
-trait CanAssertAssertionFailureTrait
+trait AssertionFailureTrait
 {
-    use CanAssertThatTrait;
+    use ThatTrait;
 
     /**
      * @since [*next-version*]

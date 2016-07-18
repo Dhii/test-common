@@ -1,13 +1,13 @@
 <?php
 
-namespace Dhii\Test;
+namespace Dhii\Test\Assertion;
 
 /**
  * Base trait that contains functionalty common to all traits which require the class to be a PHPUnit constraint.
  *
  * @since [*next-version*]
  */
-trait CanAssertThatTrait
+trait ThatTrait
 {
     /**
      * @codeCoverageIgnore

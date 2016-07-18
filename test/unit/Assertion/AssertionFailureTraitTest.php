@@ -1,15 +1,15 @@
 <?php
 
-namespace Dhii\Test\Test;
+namespace Dhii\Test\Test\Assertion;
 
 /**
- * Tests CanAssertAssertionFailureTrait.
+ * Tests AssertionFailureTrait.
  *
  * Ultimately, this tests a test mechanism, which determines if an assertion fails.
  *
  * @since [*next-version*]
  */
-class CanAssertAssertionFailureTraitTest extends \PHPUnit_Framework_TestCase
+class AssertionFailureTraitTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Fails if the assertion of failure by subject fails, i.e. if the tested test succeeds.
@@ -18,7 +18,7 @@ class CanAssertAssertionFailureTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testAssertAssertionFailureSuccess()
     {
-        $subjectClass = \Dhii\Test\CanAssertAssertionFailureTrait::class;
+        $subjectClass = \Dhii\Test\Assertion\AssertionFailureTrait::class;
         $trait = $this->getMockForTrait($subjectClass);
         $trait->method('assertThat')
             ->will($this->returnCallback(function ($value, $constraint, $message = '') {
@@ -38,7 +38,7 @@ class CanAssertAssertionFailureTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testAssertAssertionFailureFails()
     {
-        $subjectClass = \Dhii\Test\CanAssertAssertionFailureTrait::class;
+        $subjectClass = \Dhii\Test\Assertion\AssertionFailureTrait::class;
         $trait = $this->getMockForTrait($subjectClass);
         $trait->method('assertThat')
             ->will($this->returnCallback(function ($value, $constraint, $message = '') {
