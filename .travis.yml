@@ -10,5 +10,10 @@ before_script:
 script:
   - phpunit
 
-after_success:
-  - travis_retry php vendor/bin/coveralls
+addons:
+    code_climate:
+        repo_token: 20d3b827eec66e957907b084fca913cc78dfc41d693713308b6ebd29e2c967d7
+
+after_script:
+    - vendor/bin/test-reporter
+
