@@ -15,5 +15,5 @@ addons:
         repo_token: 20d3b827eec66e957907b084fca913cc78dfc41d693713308b6ebd29e2c967d7
 
 after_script:
-    - vendor/bin/test-reporter
+    - vendor/bin/test-reporter --coverage-report="test/coverage/clover.xml"
 
