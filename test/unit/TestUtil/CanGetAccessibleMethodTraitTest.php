@@ -22,6 +22,7 @@ class CanGetAccessibleMethodTraitTest extends \PHPUnit_Framework_TestCase
     {
         $trait = $this->getMockForTrait(CanGetAccessibleMethodTrait::class);
         $method = $trait->getAccessibleMethod($this, '_inaccessibleMethod');
+        $this->assertInstanceOf(\ReflectionMethod::class, $method, 'Method must be a valid reflection method');
         /* @var $method \ReflectionMethod */
         $this->assertSame($this->getMessageToken(), $method->invoke($this),
             'Method must run');
