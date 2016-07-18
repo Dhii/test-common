@@ -2,6 +2,8 @@
 
 namespace Dhii\Test\Test\Assertion;
 
+use Dhii\Test\Assertion\AssertionFailureTrait as TestSubject;
+
 /**
  * Tests AssertionFailureTrait.
  *
@@ -12,21 +14,39 @@ namespace Dhii\Test\Test\Assertion;
 class AssertionFailureTraitTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @since [*next-version*]
+     * @param string $name Name of the trait, for which to create a mock.
+     * @param \PHPUnit_Framework_TestCase|null The test case, which will perform assertions instead of the mock.
+     *  Default: this test case instance.
+     * @return PHPUnit_Framework_MockObject_MockObject Mock of the trait.
+     *  This mock will use the given test case for assertions.
+     */
+    public function createTestCaseTraitMock($name, $testCase = null)
+    {
+        if (is_null($testCase)) {
+            $testCase = $this;
+        }
+
+        $mock = $this->getMockForTrait($name);
+        $mock->method('assertThat')->will($this->returnCallback(function($value, $constraint, $message) {
+            $this->assertThat($value, $constraint, $message);
+        }));
+
+        return $mock;
+    }
+
+    /**
      * Fails if the assertion of failure by subject fails, i.e. if the tested test succeeds.
      *
      * @since [*next-version*]
      */
     public function testAssertAssertionFailureSuccess()
     {
-        $subjectClass = \Dhii\Test\Assertion\AssertionFailureTrait::class;
-        $trait = $this->getMockForTrait($subjectClass);
-        $trait->method('assertThat')
-            ->will($this->returnCallback(function ($value, $constraint, $message = '') {
-                $this->assertThat($value, $constraint, $message);
-            }));
+        $subjectClass = TestSubject::class;
+        $subject = $this->createTestCaseTraitMock($subjectClass);
 
         $message = 'Asdasdasd';
-        $trait->assertAssertionFailure(function () use ($message) {
+        $subject->assertAssertionFailure(function () use ($message) {
             $this->assertTrue(false, $message);
         }, $message);
     }
@@ -38,18 +58,14 @@ class AssertionFailureTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testAssertAssertionFailureFails()
     {
-        $subjectClass = \Dhii\Test\Assertion\AssertionFailureTrait::class;
-        $trait = $this->getMockForTrait($subjectClass);
-        $trait->method('assertThat')
-            ->will($this->returnCallback(function ($value, $constraint, $message = '') {
-                $this->assertThat($value, $constraint, $message);
-            }));
+        $subjectClass = TestSubject::class;
+        $subject = $this->createTestCaseTraitMock($subjectClass);
 
         $message = 'Asdasdasd';
         $error = 'Because the innermost assertion is successful, the tested assertion must fail';
 
         try {
-            $trait->assertAssertionFailure(function () use ($message) {
+            $subject->assertAssertionFailure(function () use ($message) {
                 $this->assertTrue(true, $message);
             }, $message);
         } catch (\PHPUnit_Framework_ExpectationFailedException $ex) {
