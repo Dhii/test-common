@@ -8,10 +8,9 @@ namespace Dhii\Test\Constraint;
  *
  * @since [*next-version*]
  */
-class AssertionFailure extends \PHPUnit_Framework_Constraint
+class AssertionFailure extends AbstractAssertion
 {
     protected $message;
-    protected $failureMessage;
 
     /**
      * @since [*next-version*]
@@ -64,27 +63,6 @@ class AssertionFailure extends \PHPUnit_Framework_Constraint
     protected function _getMessage()
     {
         return $this->message;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     *
-     * @since [*next-version*]
-     *
-     * @param string|null $message The failure message. Null to ignore message constraint.
-     *
-     * @return \Dhii\Test\Constraint\AssertionFailure This instance.
-     */
-    protected function _setFailureMessage($message)
-    {
-        $this->failureMessage = $message;
-
-        return $this;
-    }
-
-    protected function _getFailureMessage()
-    {
-        return $this->failureMessage;
     }
 
     /**
