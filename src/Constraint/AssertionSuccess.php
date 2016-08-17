@@ -7,7 +7,7 @@ namespace Dhii\Test\Constraint;
  *
  * @since [*next-version*]
  */
-class AssertionSuccess extends \PHPUnit_Framework_Constraint
+class AssertionSuccess extends AbstractAssertion
 {
     protected $failureMessage;
 
@@ -29,7 +29,7 @@ class AssertionSuccess extends \PHPUnit_Framework_Constraint
         try {
             call_user_func_array($other, []);
         } catch (\PHPUnit_Framework_ExpectationFailedException $ex) {
-            $this->failureMessage = $ex->getMessage();
+            $this->_setFailureMessage($ex->getMessage());
 
             return false;
         }
@@ -57,6 +57,6 @@ class AssertionSuccess extends \PHPUnit_Framework_Constraint
     public function additionalFailureDescription($other)
     {
         return sprintf('An assertion failed with message:
-``%1$s``',  $this->failureMessage);
+``%1$s``',  $this->_getFailureMessage());
     }
 }
