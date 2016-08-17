@@ -9,8 +9,10 @@ namespace Dhii\Test\Constraint;
  */
 class AssertionSuccess extends \PHPUnit_Framework_Constraint
 {
+    protected $failureMessage;
+
     /**
-     * Runs the callback, and sees if assertions in it don't fail.
+     * {@inheritdoc}
      *
      * @since [*next-version*]
      *
@@ -34,6 +36,8 @@ class AssertionSuccess extends \PHPUnit_Framework_Constraint
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @since [*next-version*]
      *
      * @return string String representation of this constraint.
