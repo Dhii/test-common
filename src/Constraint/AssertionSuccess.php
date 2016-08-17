@@ -29,6 +29,8 @@ class AssertionSuccess extends \PHPUnit_Framework_Constraint
         try {
             call_user_func_array($other, []);
         } catch (\PHPUnit_Framework_ExpectationFailedException $ex) {
+            $this->failureMessage = $ex->getMessage();
+
             return false;
         }
 
@@ -45,5 +47,16 @@ class AssertionSuccess extends \PHPUnit_Framework_Constraint
     public function toString()
     {
         return 'does not contain a failed assertion';
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @since [*next-version*]
+     */
+    public function additionalFailureDescription($other)
+    {
+        return sprintf('An assertion failed with message:
+``%1$s``',  $this->failureMessage);
     }
 }
