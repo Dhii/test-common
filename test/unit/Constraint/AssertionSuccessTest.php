@@ -94,4 +94,18 @@ class AssertionSuccessTest extends \PHPUnit_Framework_TestCase
         $constraint = $this->createConstraint();
         $this->assertInternalType('string', $constraint->toString(), 'The constraint string must be a valid string');
     }
+
+    /**
+     * Tests that the string representation of the constraint is correct.
+     *
+     * @since [*next-version*]
+     */
+    public function testAdditionalFailureDescription()
+    {
+        $constraint = $this->createConstraint();
+        $this->assertContains('failed with message',
+                $constraint->additionalFailureDescription(''),
+                'The additional failure description is wrong',
+                true);
+    }
 }
